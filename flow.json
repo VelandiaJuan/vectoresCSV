@@ -1,1 +1,294 @@
-[]
+[
+    {
+        "id": "b031f3b5fc5f352c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "457d9ad6.b737b4",
+        "type": "inject",
+        "z": "b031f3b5fc5f352c",
+        "name": "single",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "1e05fafd.887b05"
+            ]
+        ]
+    },
+    {
+        "id": "1e05fafd.887b05",
+        "type": "change",
+        "z": "b031f3b5fc5f352c",
+        "name": "Generate single payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "e9546682.b39898"
+            ]
+        ]
+    },
+    {
+        "id": "e9546682.b39898",
+        "type": "csv",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": false,
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "a,b,c",
+        "skip": "0",
+        "x": 610,
+        "y": 120,
+        "wires": [
+            [
+                "f83ad3b0.78d32"
+            ]
+        ]
+    },
+    {
+        "id": "f83ad3b0.78d32",
+        "type": "debug",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 970,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ae242f2c.d1c8a",
+        "type": "inject",
+        "z": "b031f3b5fc5f352c",
+        "name": "array",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "7535f521.4a88bc"
+            ]
+        ]
+    },
+    {
+        "id": "7535f521.4a88bc",
+        "type": "change",
+        "z": "b031f3b5fc5f352c",
+        "name": "Generate array payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())},\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())},\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())},\t    { \"a\":$floor(100*$random()),\"b\":$floor(100*$random()),\"c\":$floor(100*$random())}\t]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "f4e0465f.ef0338"
+            ]
+        ]
+    },
+    {
+        "id": "f4e0465f.ef0338",
+        "type": "csv",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 610,
+        "y": 180,
+        "wires": [
+            [
+                "6eb67fdf.58626"
+            ]
+        ]
+    },
+    {
+        "id": "6eb67fdf.58626",
+        "type": "debug",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 990,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4a152bf2.aedbf4",
+        "type": "file",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 820,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94449dcad7ed8853",
+        "type": "csv",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 570,
+        "y": 260,
+        "wires": [
+            [
+                "848f2a15824cb334"
+            ]
+        ]
+    },
+    {
+        "id": "25fbbad5872f87e5",
+        "type": "function",
+        "z": "b031f3b5fc5f352c",
+        "name": "vectoresDinamicos",
+        "func": "var posicionV = [1,2,6,5,45];//vector de posicion adquirido\nvar cargaV = [10,20,30,55.5,45];//segundo vector de prueba\nvar objeto = [];\nvar directorio;\nfor (let i = 0; i < posicionV.length; i++) {\n    objeto[i] = {posicion:posicionV[i],carga:cargaV[i]}   \n}\n\nmsg.payload = objeto;//contenido del mensaje\ndirectorio = \"C:/Users/Velandia Juan/Desktop/dinagrama.csv\"\n\nvar variables = {'objeto':objeto,'vectores':{posicionV,cargaV}}\ncontext.set('mensaje',msg.payload,'memoryOnly')\ncontext.set('variables', variables,'memoryOnly')\nflow.set('directorio', directorio)\nreturn msg;\n\n// estructura de ejemplo\n// msg.payload=[\n//     { a: 80, b: 18, c: 2 },\n//     { a: 52, b: 36, c: 10 },\n//     { a: 91, b: 18, c: 61 },\n//     { a: 32, b: 47, c: 65 },\n// ]",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 260,
+        "wires": [
+            [
+                "94449dcad7ed8853"
+            ]
+        ]
+    },
+    {
+        "id": "5aec4f3866ecb7a3",
+        "type": "inject",
+        "z": "b031f3b5fc5f352c",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "25fbbad5872f87e5"
+            ]
+        ]
+    },
+    {
+        "id": "848f2a15824cb334",
+        "type": "change",
+        "z": "b031f3b5fc5f352c",
+        "name": "ruta",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "directorio",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "4a152bf2.aedbf4"
+            ]
+        ]
+    }
+]
